@@ -1,0 +1,26 @@
+- name: Demo on Variables
+  hosts: all
+  vars:
+    URL: Sample.com
+  tasks:
+    - name: Print URL Variable
+      ansible.builtin.debug:
+        msg: "{{ URL }}"
+
+- name: Demo on variables on task level
+  hosts: all
+  tasks:
+    - name: Print URL Variable
+      ansible.builtin.debug:
+        msg: "{{ URL1 }}"
+      vars:
+        URL1: sample1.com
+
+    - name: Print URL Variable
+      ansible.builtin.debug:
+        msg: "{{ URL2 }}"
+      vars:
+        URL2: sample2.com
+
+
+
