@@ -22,5 +22,30 @@
       vars:
         URL2: sample2.com
 
+- name: Demo on variables on precedence
+  hosts: all
+  vars:
+    URL1: example1.com
+    URL2: example2.com
+  tasks:
+    - name: Print URL Variable
+      ansible.builtin.debug:
+        msg: "{{ URL1 }}"
+      vars:
+        URL1: sample1.com
 
+    - name: Print URL Variable
+      ansible.builtin.debug:
+        msg: "{{ URL2 }}"
+      vars:
+        URL2: sample2.com
 
+- name: Register Variable Example
+  hosts: all
+  tasks:
+    - name: Get uptime of server
+      ansible.builtin.shell: uptime
+      register: OUT
+    - name: Print the register Variable
+      ansible.builtin.debug:
+        msg: "{{ OUT }}"
